@@ -1,13 +1,16 @@
 const fs = require('fs');
 const path = require("path");
 
-const PLAYERS_FILE = path.join(__dirname,"../data/players.json"); //better dynamic linking
+const PLAYERS_FILE = path.join(__dirname, "..", "data", "players.json"); //better dynamic linking
 
 let players = [];
-
+console.log(PLAYERS_FILE);
+console.log("RESOLVED PATH:", fs.realpathSync(PLAYERS_FILE));
+console.log("PLAYERS LOADED AT START:", players.length);
+console.log(players);
 
 if (fs.existsSync(PLAYERS_FILE)){
-    players = JSON.parse(fs.readFileSync(PLAYERS_FILE,utf8));
+    players = JSON.parse(fs.readFileSync(PLAYERS_FILE,"utf8"));
 }
 
 function savePlayers(){
@@ -19,7 +22,8 @@ function getPlayers(){
 }
 
 function findPlayerByName(username){
-    return players.find(p => p.username === username);
+    const clean = username.trim().toLowerCase();
+    return players.find(p => p.username.trim().toLowerCase() === clean);
 }
 
 function findPlayerByUUID(uuid){
