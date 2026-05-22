@@ -2,7 +2,7 @@ const net = require('net');
 
 const handleLogin = require("./handler/loginHandler");
 const handlePlayers = require("./handler/playerHandler");
-const handleUpdPos = require("./handler/locUpdateHandler");
+const handleUpdPos = require("./handler/updateHandler");
 
 const PORT = 5010;
 
