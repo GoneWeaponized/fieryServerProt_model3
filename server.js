@@ -3,6 +3,7 @@ const net = require('net');
 const handleLogin = require("./handler/loginHandler");
 const handlePlayers = require("./handler/playerHandler");
 const handleUpdPos = require("./handler/updateHandler");
+const handleRegister = require("./handler/registerHandler");
 
 const PORT = 5010;
 
@@ -20,6 +21,10 @@ const server = net.createServer(socket =>{
                 handleLogin(socket, split);
                 break;
             
+            case "REGISTER":
+                handleRegister(socket,split);
+                break;
+
             case "GET_PLAYERS":
                 handlePlayers(socket, split);
                 break;
